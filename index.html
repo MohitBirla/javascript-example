@@ -1,0 +1,99 @@
+
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+        <script>
+            var userDetail = [
+                {userName: "rio", Password: "rio@123", userNumber:"1234567890"},
+                {userName: "tokyo", Password: "tokyo@123", userNumber:"0987654321"},
+                {userName: "berlin", Password: "berlin@123", userNumber:"1234512345"}
+            ];
+          function foo(){
+              var time = new Date()
+              document.getElementById("liveClock").innerHTML=time.toLocaleTimeString();
+          }
+          function bodyload(){
+              setInterval(foo);
+          }
+          function onlovercase(){
+              var name = document.getElementById("txtName").value;
+              document.getElementById("txtName").innerHTML= name.toLowerCase();
+          }
+            function loginClick(){
+                var name = document.getElementById("txtName").value;
+                var pwd = document.getElementById("txtPassword").value;
+                var msg = document.getElementById("msg");
+            for(var user of userDetail){
+                if(user.userName === name || user.userNumber === name){
+                    if(user.Password === pwd){
+                       location.href="next.html"; 
+                    }
+                    else{
+                        msg.innerHTML="wrong password"
+                        break;
+                    }
+                }
+                else{
+                    msg.innerHTML="invalid username"
+                }
+            }
+            }
+        </script>
+    </head>
+    <body style="background-color: #334756;" onload="bodyload()" class="container-fluid">
+        <h1 style="color: white; text-align: center;">New Example</h1>
+        <h4 id="liveClock" style="color: white;"></h4>
+        <div class="btn-toolbar btn btn-light justify-content-between" style="margin-top: 30px;">
+           <div class="btn-group"> 
+                <button class="btn btn-dark">Home</button>
+                <button class="btn btn-dark">Contact</button>
+                <button class="btn btn-dark">Help</button>
+            </div>
+            <button class="btn btn-success" data-bs-target="#comeModal" data-bs-toggle="modal">Login</button>
+            <div class="btn-group">
+                <input type="text">
+                <button class="btn btn-dark">Search</button>
+            </div>
+        </div>
+        <div class="modal" id="comeModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>User Detail</h1>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label>username</label>
+                        <input type="text" class="form-control" id="txtName" onblur="onlovercase()">
+                        <label>password</label>
+                        <input type="password" class="form-control" id="txtPassword">
+                    </div>
+                    <div class="modal-footer">
+                        <p class="text-danger" id="msg" style="margin-right: 130px;"></p>
+                        <button class="btn btn-success" onclick="loginClick()">Login</button>
+                        <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<!-- <script>
+    function GetTime() {
+        var now = new Date();
+        document.getElementById('timer').innerHTML = now.toLocaleTimeString();
+    }
+    
+    function f1(){
+            setInterval(GetTime);
+    }   
+    
+</script>
+<body onload="f1()">
+    <div align="center" id="timer">
+
+    </div>
+</body> -->
